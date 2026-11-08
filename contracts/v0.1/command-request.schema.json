@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opensoft.github.io/openLab/contracts/v0.1/command-request.schema.json",
+  "title": "openLab command-request draft 0.1",
+  "type": "object",
+  "properties": {
+    "contractVersion": {
+      "const": "0.1.0"
+    },
+    "requestId": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "scope": {
+      "$ref": "common.schema.json#/$defs/scope"
+    },
+    "instrument": {
+      "$ref": "common.schema.json#/$defs/instrument"
+    },
+    "capability": {
+      "$ref": "common.schema.json#/$defs/capabilityReference"
+    },
+    "operationId": {
+      "enum": [
+        "turntable.rotate",
+        "turntable.position-slot"
+      ]
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlationId": {
+      "$ref": "common.schema.json#/$defs/id"
+    }
+  },
+  "required": [
+    "contractVersion",
+    "requestId",
+    "scope",
+    "instrument",
+    "capability",
+    "operationId",
+    "parameters",
+    "expiresAt",
+    "correlationId"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "operationId": {
+            "const": "turntable.rotate"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "const": "relative-degrees"
+                  },
+                  "degrees": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "mode",
+                  "degrees"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "const": "absolute-degrees"
+                  },
+                  "degrees": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMaximum": 360
+                  }
+                },
+                "required": [
+                  "mode",
+                  "degrees"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "slotNumber": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "slotNumber"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  ]
+}

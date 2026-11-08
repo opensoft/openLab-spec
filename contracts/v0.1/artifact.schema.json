@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opensoft.github.io/openLab/contracts/v0.1/artifact.schema.json",
+  "title": "openLab artifact draft 0.1",
+  "type": "object",
+  "properties": {
+    "contractVersion": {
+      "const": "0.1.0"
+    },
+    "artifactId": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "acquisitionId": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "scope": {
+      "$ref": "common.schema.json#/$defs/scope"
+    },
+    "role": {
+      "const": "raw-acquisition"
+    },
+    "formatId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifestDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "common.schema.json#/$defs/file"
+      }
+    },
+    "storageRef": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objectId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provider",
+        "objectId"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "contractVersion",
+    "artifactId",
+    "acquisitionId",
+    "scope",
+    "role",
+    "formatId",
+    "manifestDigest",
+    "files",
+    "storageRef"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opensoft.github.io/openLab/contracts/v0.1/import-request.schema.json",
+  "title": "openLab import-request draft 0.1",
+  "type": "object",
+  "properties": {
+    "contractVersion": {
+      "const": "0.1.0"
+    },
+    "requestId": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "scope": {
+      "$ref": "common.schema.json#/$defs/scope"
+    },
+    "importProfile": {
+      "type": "object",
+      "properties": {
+        "profileId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "profileId",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "sourceRunKey": {
+      "type": "object",
+      "properties": {
+        "sourceSystem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sourceSystem",
+        "runId"
+      ],
+      "additionalProperties": false
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "common.schema.json#/$defs/file"
+      }
+    },
+    "sourceCompletion": {
+      "type": "object",
+      "properties": {
+        "basis": {
+          "enum": [
+            "operator-confirmed",
+            "vendor-marker"
+          ]
+        },
+        "evidenceRef": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "basis",
+        "evidenceRef"
+      ],
+      "additionalProperties": false
+    },
+    "correlationId": {
+      "$ref": "common.schema.json#/$defs/id"
+    }
+  },
+  "required": [
+    "contractVersion",
+    "requestId",
+    "scope",
+    "importProfile",
+    "sourceRunKey",
+    "files",
+    "sourceCompletion",
+    "correlationId"
+  ],
+  "additionalProperties": false
+}
