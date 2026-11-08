@@ -1,27 +1,8 @@
-# openLab-spec
+# openLab specifications
 
-The **spec leg** of the `openlab` project: requirements, decisions and
-acceptance criteria. The implementation lives in
-[`Opensoft/openLab-code`](https://github.com/Opensoft/openLab-code).
+Public neutral laboratory interfaces, draft 0.1.0.
 
-**Clone the assembly root, not this repository.** This leg is mounted as a
-submodule at `spec/` inside
-[`Opensoft/openLab`](https://github.com/Opensoft/openLab), which
-is what pins the commit of this repository that the project currently is:
+- [Foundation overview](ideation/brainstorm/openlab-foundation-overview.md)
+- [JSON Schemas](contracts/v0.1/)
 
-```sh
-git clone --recurse-submodules https://github.com/Opensoft/openLab.git
-cd openLab
-make bootstrap
-```
-
-Working here directly is fine — it is an ordinary repository with an ordinary
-branch. What advancing this leg does NOT do is advance the project: that is a
-commit in the assembly root moving the gitlink, `contracts/spec-pin.yaml` and
-any workflow `@<sha>` reference together.
-
-Being the spec leg confers no authority over specifications. The split is
-navigation; authority travels in grants, and a project that keeps spec and
-code in one repository is reviewed identically.
-
-Topic: `xf-project-openlab`.
+Schemas are exploratory and are not a claim of hardware support or scientific validation. Run executable examples from the assembly root code leg.

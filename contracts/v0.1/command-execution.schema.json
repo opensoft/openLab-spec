@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opensoft.github.io/openLab/contracts/v0.1/command-execution.schema.json",
+  "title": "openLab command-execution draft 0.1",
+  "type": "object",
+  "properties": {
+    "contractVersion": {
+      "const": "0.1.0"
+    },
+    "executionId": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "requestId": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "scope": {
+      "$ref": "common.schema.json#/$defs/scope"
+    },
+    "status": {
+      "enum": [
+        "accepted",
+        "running",
+        "succeeded",
+        "failed",
+        "indeterminate",
+        "rejected"
+      ]
+    },
+    "statusRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "adapter": {
+      "$ref": "common.schema.json#/$defs/component"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "basis": {
+            "enum": [
+              "device-observed",
+              "adapter-inferred",
+              "no-op"
+            ]
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "basis",
+          "observedAt",
+          "reference"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "contractVersion",
+    "executionId",
+    "requestId",
+    "scope",
+    "status",
+    "statusRevision",
+    "adapter",
+    "evidence"
+  ],
+  "additionalProperties": false
+}

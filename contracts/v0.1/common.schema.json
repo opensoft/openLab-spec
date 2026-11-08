@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opensoft.github.io/openLab/contracts/v0.1/common.schema.json",
+  "title": "openLab common draft 0.1",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "organizationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "laboratoryId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "organizationId",
+        "laboratoryId"
+      ],
+      "additionalProperties": false
+    },
+    "instrument": {
+      "type": "object",
+      "properties": {
+        "instrumentId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "instrumentId"
+      ],
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "properties": {
+        "componentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "buildDigest": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "componentId",
+        "version",
+        "buildDigest"
+      ],
+      "additionalProperties": false
+    },
+    "externalReference": {
+      "type": "object",
+      "properties": {
+        "system": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "system",
+        "kind",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "capabilityReference": {
+      "type": "object",
+      "properties": {
+        "descriptorId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "descriptorId",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "sizeBytes",
+        "sha256"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
